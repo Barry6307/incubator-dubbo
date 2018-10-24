@@ -30,11 +30,12 @@ public class Consumer {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"META-INF/spring/dubbo-demo-consumer.xml"});
         context.start();
         DemoService demoService = (DemoService) context.getBean("demoService"); // get remote service proxy
+        int cc = 1;
         while (true) {
             try {
                 Thread.sleep(1000);
                 String hello = demoService.sayHello("world"); // call remote method
-                System.out.println(hello); // get result
+                System.out.println(hello + "   睡了1秒,现在是第"+cc++ +"秒"); // get result
             } catch (Throwable throwable) {
                 throwable.printStackTrace();
             }
